@@ -1,17 +1,23 @@
 #include <pybind11/pybind11.h>
+#include "rate4site.h"
 
 #define STRINGIFY(x) #x
 #define MACRO_STRINGIFY(x) STRINGIFY(x)
 
-int add(int i, int j) {
-    return i + j;
+int run_rate4site() {
+    const char* args[] = { "rate4site", "example.fasta" };
+    int argc = 2;  
+
+   
+    rate4site r4s(argc, const_cast<char**>(args));
+    return 0;
 }
 
 namespace py = pybind11;
 
 PYBIND11_MODULE(pyrate4site, m) {
     m.doc() = R"pbdoc(
-        Pybind11 example plugin
+        Rate4Site Plugin
         -----------------------
 
         .. currentmodule:: pyrate4site
@@ -19,21 +25,13 @@ PYBIND11_MODULE(pyrate4site, m) {
         .. autosummary::
            :toctree: _generate
 
-           add
-           subtract
     )pbdoc";
 
-    m.def("add", &add, R"pbdoc(
-        Add two numbers
+    m.def("rate4site", &run_rate4site, R"pbdoc(
+        Compute Rate4site
 
-        Some other explanation about the add function.
     )pbdoc");
 
-    m.def("subtract", [](int i, int j) { return i - j; }, R"pbdoc(
-        Subtract two numbers
-
-        Some other explanation about the subtract function.
-    )pbdoc");
 
 #ifdef VERSION_INFO
     m.attr("__version__") = MACRO_STRINGIFY(VERSION_INFO);

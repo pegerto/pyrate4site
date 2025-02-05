@@ -15,7 +15,7 @@ void errorMsg::reportError(const vector<string>& textToPrint, const int exitCode
 	for (int i =0 ; i < textToPrint.size() ; ++i) {
 		LOG(1,<<textToPrint[i]<<endl);
 		cerr<<textToPrint[i]<<endl;
-		if (_errorOut != NULL && *_errorOut != cerr)  {
+		if (_errorOut != nullptr && _errorOut != &std::cerr) {
 			(*_errorOut)<<textToPrint[i]<<endl;
 		}
 	}
@@ -30,7 +30,7 @@ void errorMsg::reportError(const vector<string>& textToPrint, const int exitCode
 void errorMsg::reportError(const string& textToPrint, const int exitCode) {
 	LOG(1,<<endl<<textToPrint<<endl);
 	cerr<<endl<<textToPrint<<endl;
-	if (_errorOut != NULL && *_errorOut != cerr)  {
+	if (_errorOut != nullptr && _errorOut != &std::cerr) {
 		(*_errorOut)<<textToPrint<<endl;
 	}
 	if (errno!=0){
