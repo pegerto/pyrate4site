@@ -9,5 +9,4 @@ pybind11_add_module(pyrate4site cpp/main.cpp)
 target_compile_definitions(pyrate4site
                            PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})
 target_link_libraries(pyrate4site 
-    PRIVATE rate4site)
-                           
+                           PRIVATE librate4site)
