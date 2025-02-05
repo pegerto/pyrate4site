@@ -45,7 +45,7 @@ set(LIB_SOURCES
 )
 
 # Create static library
-add_library(rate4site STATIC ${LIB_SOURCES})
+add_library(librate4site STATIC ${LIB_SOURCES})
 
 # Clean target
 set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "*.o librate4site.a")
