@@ -41,7 +41,7 @@ set(LIB_SOURCES
     stochasticProcessSSRV.cpp bestAlphaAndNu.cpp  C_evalParamSSRV.cpp
     betaOmegaDistribution.cpp betaUtilities.cpp betaDistribution.cpp geneticCodeHolder.cpp
     bblEM2USSRV.cpp bestParamUSSRV.cpp likeDist2USSRV.cpp ussrvModel.cpp likelihoodComputation2USSRV.cpp
-    fromCountTableComponentToDistance2USSRV.cpp normalDist.cpp rate4siteOptions.cpp
+    fromCountTableComponentToDistance2USSRV.cpp normalDist.cpp rate4siteOptions.cpp rate4site.cpp
 )
 
 # Create static library

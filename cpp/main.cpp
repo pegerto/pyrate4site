@@ -5,11 +5,7 @@
 #define MACRO_STRINGIFY(x) STRINGIFY(x)
 
 int run_rate4site() {
-    const char* args[] = { "rate4site", "example.fasta" };
-    int argc = 2;  
-
-   
-    rate4site r4s(argc, const_cast<char**>(args));
+    rate4site r4s;
     return 0;
 }
 
@@ -31,7 +27,6 @@ PYBIND11_MODULE(pyrate4site, m) {
         Compute Rate4site
 
     )pbdoc");
-
 
 #ifdef VERSION_INFO
     m.attr("__version__") = MACRO_STRINGIFY(VERSION_INFO);

@@ -48,6 +48,9 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 
+rate4site::rate4site() {
+}
+
 rate4site::rate4site(int argc, char* argv[]) {
 	//timingsF.open("timing.dat");
 	fillOptionsParameters(argc,argv);
@@ -89,6 +92,10 @@ void rate4site::print(ostream & out, const Vdouble & rate2print) {
 			break;
 	}
 	printAveAndStd(out);
+}
+
+int rate4site::compute() {
+
 }
 
 void rate4site::computeAveAndStd(){

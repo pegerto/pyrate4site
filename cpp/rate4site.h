@@ -8,11 +8,16 @@
 #include "stochasticProcess.h"
 #include "tree.h"
 
-class rate4site {
+class __attribute__((visibility("default"))) rate4site {
 
 public:
 	explicit rate4site(int argc, char* argv[]);
 	virtual ~rate4site();
+
+	//PYRATE4SITE EXTENSIONS
+	rate4site();
+	int compute();
+
 private:
 	void computeRate4site();
 	void compute_ML_Rate4site();
