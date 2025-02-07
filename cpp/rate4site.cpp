@@ -49,13 +49,10 @@ int main(int argc, char* argv[]) {
 }
 
 rate4site::rate4site(char msa[]) {
-	char* _dummy_options[] = {"rate4site"};
-	int opt = 1;
+	char* _dummy_options[] = {"rate4site", "-s", msa, "-o", "/dev/null", "-Y", "/dev/null", "-X", "/dev/null"};
+	int opt = 9;
 	_options =  new rate4siteOptions(opt, _dummy_options);
 	_alphaConf = 0.5;
-
-	printOptionParameters();
-	getStartingSequenceData();
 }
 
 rate4site::rate4site(int argc, char* argv[]) {
@@ -101,8 +98,24 @@ void rate4site::print(ostream & out, const Vdouble & rate2print) {
 	printAveAndStd(out);
 }
 
-int rate4site::compute() {
+Vdouble rate4site::compute() {
+	getStartingSequenceData();
+	getStartingStochasticProcess();
+	getStartingEvolTreeTopology(true);
+	getStartingBranchLengthsAndAlpha();
+	printOutputTree();
+	fillReferenceSequence();
+	removeGapPositionAccordingToTheReferenceSequence();
+	getAttributesAndValidateThatEverythingFits();
+	computeRate4site();
 
+	ofstream nonNormalizedOutStream(_options->outFileNotNormalize.c_str());
+	computeAveAndStd(); // put them in _ave, and _std
+	print(nonNormalizedOutStream,_rate);
+	nonNormalizedOutStream.close();
+	normalizeRates(); // change also the _ave, the _std the quantiles, etc.
+	print(_options->out(),_normalizedRates);
+	return _normalizedRates;
 }
 
 void rate4site::computeAveAndStd(){
@@ -132,7 +145,7 @@ void rate4site::fillReferenceSequence(){
 
 rate4site::~rate4site() {
 	delete _alph;
-	// for (int i=0; i < _spVec.size(); ++i) delete _spVec[i];
+	for (int i=0; i < _spVec.size(); ++i) delete _spVec[i];
 	delete _options;
 }
 

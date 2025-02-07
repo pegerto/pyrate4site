@@ -1,15 +1,19 @@
 #include <pybind11/pybind11.h>
+#include <pybind11/numpy.h>
+#include <vector>
 #include "rate4site.h"
 
 #define STRINGIFY(x) #x
 #define MACRO_STRINGIFY(x) STRINGIFY(x)
 
-int run_rate4site() {
-    rate4site r4s(0);
-    return 0;
+namespace py = pybind11;
+
+py::array_t<double> run_rate4site(char msa[]) {
+    rate4site r4s(msa);
+    std::vector<double> vec = r4s.compute();
+    return py::array_t<double>(vec.size(), vec.data());
 }
 
-namespace py = pybind11;
 
 PYBIND11_MODULE(pyrate4site, m) {
     m.doc() = R"pbdoc(

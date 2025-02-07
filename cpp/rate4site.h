@@ -16,7 +16,7 @@ public:
 
 	//PYRATE4SITE EXTENSIONS
 	rate4site(char msa[]);
-	int compute();
+	Vdouble compute();
 
 private:
 	void computeRate4site();
