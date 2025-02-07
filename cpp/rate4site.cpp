@@ -48,7 +48,14 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 
-rate4site::rate4site() {
+rate4site::rate4site(char msa[]) {
+	char* _dummy_options[] = {"rate4site"};
+	int opt = 1;
+	_options =  new rate4siteOptions(opt, _dummy_options);
+	_alphaConf = 0.5;
+
+	printOptionParameters();
+	getStartingSequenceData();
 }
 
 rate4site::rate4site(int argc, char* argv[]) {
@@ -125,7 +132,7 @@ void rate4site::fillReferenceSequence(){
 
 rate4site::~rate4site() {
 	delete _alph;
-	for (int i=0; i < _spVec.size(); ++i) delete _spVec[i];
+	// for (int i=0; i < _spVec.size(); ++i) delete _spVec[i];
 	delete _options;
 }
 

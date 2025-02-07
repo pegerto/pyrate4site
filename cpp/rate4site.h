@@ -15,7 +15,7 @@ public:
 	virtual ~rate4site();
 
 	//PYRATE4SITE EXTENSIONS
-	rate4site();
+	rate4site(char msa[]);
 	int compute();
 
 private:

@@ -5,7 +5,7 @@
 #define MACRO_STRINGIFY(x) STRINGIFY(x)
 
 int run_rate4site() {
-    rate4site r4s;
+    rate4site r4s(0);
     return 0;
 }
 
