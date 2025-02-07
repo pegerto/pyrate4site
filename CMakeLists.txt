@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_subdirectory(pybind11)
 add_subdirectory(cpp)
 
-
 pybind11_add_module(pyrate4site cpp/main.cpp)
 
 
