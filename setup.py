@@ -137,4 +137,8 @@ setup(
     zip_safe=False,
     extras_require={"test": ["pytest>=6.0"]},
     python_requires=">=3.7",
+    include_package_data=True,
+    package_data={
+        "pyrate4site": ["cpp/**/*", "pybind/**/*"],
+    },
 )
