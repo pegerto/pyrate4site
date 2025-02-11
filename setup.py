@@ -127,7 +127,7 @@ class CMakeBuild(build_ext):
 # logic and declaration, and simpler if you include description/version in a file.
 setup(
     name="pyrate4site",
-    version="0.0.1",
+    version="0.0.4",
     author="Pegerto Fernandez",
     author_email="pegerto@gmail.com",
     description="Python implementation of Rate4Site",
@@ -139,6 +139,8 @@ setup(
     python_requires=">=3.7",
     include_package_data=True,
     package_data={
-        "pyrate4site": ["cpp/**/*", "pybind/**/*"],
+        "pyrate4site": ["CMakeLists.txt", 
+                        "cpp/**/*", 
+                        "pybind11/**/*"],
     },
 )
