@@ -3,6 +3,7 @@ project(pyrate4site)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 add_subdirectory(pybind11)
 add_subdirectory(cpp)
