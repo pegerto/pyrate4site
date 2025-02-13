@@ -15,7 +15,7 @@ public:
 	virtual ~rate4site();
 
 	//PYRATE4SITE EXTENSIONS
-	rate4site(char msa[]);
+	rate4site(char msa[], char *outTreeFile);
 	Vdouble compute();
 
 private:

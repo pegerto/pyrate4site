@@ -39,14 +39,18 @@ userInputAlpha(0)
 	out_f.open(outFile.c_str()); // default output file
 	outPtr=&out_f; // default output file
 
+	// HACK reset optint to 1
+	// As this class not parses input parameters multiple times.
+	optind = 1;
+
 	while (c >= 0) {
+
 #ifdef WIN32
 		c = getopt_long(argc, argv,"A:a:b:B:c:C:d:D:f:F:Hh?i:I:k:K:l:L:m:M:O:o:p:P:s:S:T:t:u:U:v:V:x:X:y:Y:z:Z:",NULL,&option_index);
 #else
 		c = getopt(argc, argv,"A:a:b:B:c:C:d:D:f:F:Hh?i:I:k:K:l:L:m:M:O:o:p:P:s:S:T:t:u:U:v:V:x:X:y:Y:z:Z:");
 #endif
 		switch (c) {
-
 			// tree file, seqfile 
 			case 'a':case 'A': referenceSeq=optarg; break;
 			case 'b':case 'B': {

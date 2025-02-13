@@ -48,11 +48,27 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 
-rate4site::rate4site(char msa[]) {
-	char* _dummy_options[] = {"rate4site", "-s", msa, "-o", "/dev/null", "-Y", "/dev/null", "-X", "/dev/null"};
-	int opt = 9;
-	_options =  new rate4siteOptions(opt, _dummy_options);
-	_alphaConf = 0.5;
+rate4site::rate4site(char msa[], char *outTreeFile) {
+
+    std::vector<char*> _dummy_options = {
+        strdup("rate4site"),
+        strdup("-o"), 
+		strdup("/dev/null"),
+        strdup("-Y"),
+		strdup("/dev/null"),
+        strdup("-X")
+    };
+
+    if (outTreeFile != nullptr) {
+        _dummy_options.push_back(strdup(outTreeFile));
+    } else {
+        _dummy_options.push_back(strdup("/dev/null"));
+    }
+	_dummy_options.push_back(strdup("-s"));
+	_dummy_options.push_back(strdup(msa));
+
+    int opt = _dummy_options.size();
+	fillOptionsParameters(opt, _dummy_options.data());
 }
 
 rate4site::rate4site(int argc, char* argv[]) {
@@ -99,6 +115,7 @@ void rate4site::print(ostream & out, const Vdouble & rate2print) {
 }
 
 Vdouble rate4site::compute() {
+	printOptionParameters();
 	getStartingSequenceData();
 	getStartingStochasticProcess();
 	getStartingEvolTreeTopology(true);
