@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 
-rate4site::rate4site(char msa[], char *outTreeFile) {
+rate4site::rate4site(char msa[], char *inTreeFile ,char *outTreeFile) {
 
     std::vector<char*> _dummy_options = {
         strdup("rate4site"),
@@ -64,6 +64,11 @@ rate4site::rate4site(char msa[], char *outTreeFile) {
     } else {
         _dummy_options.push_back(strdup("/dev/null"));
     }
+	if (inTreeFile != nullptr) {
+		_dummy_options.push_back(strdup("-t"));
+		_dummy_options.push_back(strdup(inTreeFile));
+	}
+
 	_dummy_options.push_back(strdup("-s"));
 	_dummy_options.push_back(strdup(msa));
 
@@ -751,7 +756,3 @@ void rate4site::getAttributesAndValidateThatEverythingFits(){
 		}
 	}
 }
-
-
-
-

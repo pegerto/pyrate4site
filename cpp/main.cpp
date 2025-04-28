@@ -8,8 +8,8 @@
 
 namespace py = pybind11;
 
-py::array_t<double> run_rate4site(char msa[],  char *outTreeFile) {
-    rate4site r4s(msa, outTreeFile);
+py::array_t<double> run_rate4site(char msa[],  char *inTreeFile, char *outTreeFile) {
+    rate4site r4s(msa, inTreeFile, outTreeFile);
     std::vector<double> vec = r4s.compute();
     return py::array_t<double>(vec.size(), vec.data());
 }
@@ -30,7 +30,7 @@ PYBIND11_MODULE(pyrate4site, m) {
     m.def("rate4site", &run_rate4site, R"pbdoc(
         Compute Rate4site
 
-    )pbdoc", py::arg("msa"), py::arg("outTreeFile") = nullptr);
+    )pbdoc", py::arg("msa"),  py::arg("inTreeFile") = nullptr,  py::arg("outTreeFile") = nullptr);
 
 #ifdef VERSION_INFO
     m.attr("__version__") = MACRO_STRINGIFY(VERSION_INFO);
