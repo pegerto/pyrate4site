@@ -127,7 +127,7 @@ class CMakeBuild(build_ext):
 # logic and declaration, and simpler if you include description/version in a file.
 setup(
     name="pyrate4site",
-    version="0.0.7",
+    version="0.1.0",
     author="Pegerto Fernandez",
     author_email="pegerto@gmail.com",
     description="Python implementation of Rate4Site",
